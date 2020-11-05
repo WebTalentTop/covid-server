@@ -46,7 +46,8 @@ app.listen(PORT, () => {
 });
 
 const server = http.createServer(app);
-const io = socketIO(server, { origins: '*:*'});
+const io = socketIO(server);
+io.set('origins', 'http://localhost:3000');
 io.on("connection", socket => {
   if (interval) {
     clearInterval(interval);
