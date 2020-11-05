@@ -46,8 +46,7 @@ app.listen(PORT, () => {
 });
 
 const server = http.createServer(app);
-const io = socketIO(server);
-io.set('origins', 'http://localhost:3000');
+const io = socketIO(server, {transports: ['websocket', 'polling', 'flashsocket']});
 io.on("connection", socket => {
   if (interval) {
     clearInterval(interval);
